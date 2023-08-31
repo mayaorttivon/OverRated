@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/headset"
+    >
+
+    <TextView
+        android:layout_width= "wrap_content"
+        android:layout_height= "wrap_content"
+        android:text= "Would you like to rate a song now?"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:textSize="50dp"
+        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal"
+        >
+    <Button
+        android:layout_width= "80dp"
+        android:layout_height= "match_parent"
+        android:id= "@+id/btnDialogYes"
+        android:text= "Yes"
+        android:textColor="@color/white"
+        android:layout_marginRight="20dp"
+    />
+        <Button
+            android:layout_width= "80dp"
+            android:layout_height= "match_parent"
+            android:id= "@+id/btnDialogNo"
+            android:text= "No"
+            android:textColor="@color/white"
+            android:layout_marginRight="20dp"
+            />
+        <Button
+            android:layout_width= "80dp"
+            android:layout_height= "match_parent"
+            android:id= "@+id/btnDialogCancel"
+            android:text= "Cancel"
+            android:textColor="@color/white"
+            android:layout_marginRight="20dp"
+            />
+    </LinearLayout>
+</LinearLayout>
