@@ -79,7 +79,7 @@ public class SameGangSongAddedService extends Service {
 
         String gang = intent.getStringExtra("gang");
         NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext(), CHANNEL_ID)
-                .setSmallIcon(R.mipmap.ic_launcher)
+                .setSmallIcon(R.drawable.ic_stat_name)
                 .setContentTitle("OverRated")
                 .setContentText("New rate by your gang: " + gang);
 
