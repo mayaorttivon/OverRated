@@ -73,20 +73,6 @@
             />
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/tvGang"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Gang: "
-        android:textSize="30dp"
-        android:textStyle="bold" />
-
-    <EditText
-        android:id="@+id/etGang"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="30dp"
-        />
     <Button
         android:id="@+id/btnAddSong"
         android:layout_width="wrap_content"

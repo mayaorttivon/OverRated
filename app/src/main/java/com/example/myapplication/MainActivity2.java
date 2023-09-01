@@ -26,7 +26,6 @@ public class MainActivity2 extends AppCompatActivity implements View.OnClickList
 
     EditText etSongName;
     EditText etArtist;
-    EditText etGang;
     Button btnPlus;
     Button btnMinus;
     TextView tvGrade;
@@ -46,7 +45,6 @@ public class MainActivity2 extends AppCompatActivity implements View.OnClickList
     {
         etSongName = findViewById(R.id.etSongName);
         etArtist = findViewById(R.id.etArtist);
-        etGang = findViewById(R.id.etGang);
         btnPlus = findViewById(R.id.btnPlus);
         btnMinus = findViewById(R.id.btnMinus);
         btnPlus.setOnClickListener(this);
@@ -74,12 +72,8 @@ public class MainActivity2 extends AppCompatActivity implements View.OnClickList
         //must be after handling the grade
         if( view == btnAddSong )
         {
-            OverRatedSong song = new OverRatedSong(etSongName.getText().toString(), etArtist.getText().toString(), grade, etGang.getText().toString());
-            //start a service that notifies about adding a new rating for the same gang.
-            //for this example it would notify only if there are already rated songs for this gang
-            Intent intent = new Intent(this, SameGangSongAddedService.class);
-            intent.putExtra("gang", song.getGang() );
-            startService(intent);
+            OverRatedSong song = new OverRatedSong(etSongName.getText().toString(), etArtist.getText().toString(), grade, getIntent().getStringExtra("gang"));
+
             //add to the songs collection so we can use it afterwards in case we would like to display all songs.
             //maybe this is redundant and is enough at this point just to add it to the db and pull to ArraList by need.
             songs.add(song);

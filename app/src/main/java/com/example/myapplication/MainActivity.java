@@ -4,10 +4,17 @@ import static android.content.ContentValues.TAG;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
 import androidx.core.content.ContextCompat;
 
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.graphics.Color;
 import android.nfc.Tag;
 import android.os.Bundle;
 import android.util.Log;
@@ -22,6 +29,8 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.messaging.FirebaseMessaging;
+import com.google.firebase.messaging.RemoteMessage;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -29,6 +38,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     EditText etPassword;
     Button btnSignIn;
     Button btnContinue;
+    EditText etGang;
     private FirebaseAuth auth;
     private FirebaseFirestore db;
 
@@ -39,6 +49,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
 
         init();
+
     }
     private void init()
     {
@@ -50,6 +61,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnSignIn.setOnClickListener(this);
         btnContinue = findViewById(R.id.btnContinue);
         btnContinue.setOnClickListener(this);
+        etGang = findViewById(R.id.etGang);
+
     }
 
     @Override
@@ -73,12 +86,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                         );
             }
-            else
+            else {
                 btnContinue.setEnabled(true);
+                btnContinue.setBackgroundColor(Color.BLACK);
+            }
         }
         else if( view == btnContinue )
         {
+            //start a service that notifies about adding a new rating for the same gang.
+            //for this example it would notify only if there are already rated songs for this gang
+            Intent serviceIntent = new Intent(this, SameGangSongAddedService.class);
+            serviceIntent.putExtra("gang", etGang.getText().toString() );
+            startService(serviceIntent);
+
             Intent intent = new Intent(this, MainActivity2.class);
+            intent.putExtra("gang", etGang.getText().toString() );
             startActivity(intent);
         }
     }
